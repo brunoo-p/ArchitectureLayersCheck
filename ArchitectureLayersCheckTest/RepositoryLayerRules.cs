@@ -10,7 +10,7 @@ using static ArchUnitNET.Fluent.ArchRuleDefinition;
 
 namespace ArchitectureLayersCheckTest
 {
-    public class RepositoryRules
+    public class RepositoryLayerRules
     {
         private readonly string projectName = "ArchitectureLayersCheck";
         private string BuildNamespace( string contextName ) => $"{projectName}.{contextName}";
@@ -24,8 +24,8 @@ namespace ArchitectureLayersCheckTest
                     typeof(DataInMemory).Assembly)
                 .Build();
 
-        [Fact]
-        public void Repository_Rules()
+        [Fact(DisplayName = "[Layers] Should test layers integrity")]
+        public void Repository_Layer_Rules()
         {
             var applicationLayer = Classes().That().ResideInNamespace(BuildNamespace("Application")).As("Application Layer");
             var domainLayer = Classes().That().ResideInNamespace(BuildNamespace("Domain")).As("Domain Layer");
